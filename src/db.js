@@ -11,8 +11,35 @@ class Database {
   }
 
   set(modelName, datum) {
-    // You should write this method
-    // and use it for inserts and updates
+    const models = this.get(modelName)
+    let id
+    if(datum.id) {
+      id = datum.id
+    } else {
+      const maxId =
+        Math.max(...
+          models
+            .map(v => v.id)
+        )
+      datum.id = maxId + 1
+    }
+
+    const existingIndex = models.findIndex(m => m.id === id)
+    if(existingIndex === -1) {
+      // Insert
+      this.data[modelName].push(datum)
+      return datum
+    } else {
+      // Update
+      let updateModel = this.data[modelName][existingIndex]
+      for(let prop in datum) {
+        if(datum[prop]) {
+          updateModel[prop] = datum[prop]
+        }
+      }
+      this.data[modelName][existingIndex] = updateModel
+      return updateModel
+    }
   }
 
   delete(modelName, datum) {

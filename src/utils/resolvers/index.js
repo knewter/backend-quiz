@@ -6,10 +6,10 @@ export const Resolvers = {
       return db
         .get(Model.name)
     },
-    get: (Model) => (unusedFirstParameter, args, context) => {
+    get: (Model) => (unusedFirstParameter, { id, }, context) => {
       return db
         .get(Model.name)
-        .find(u => u.id === args.id)
+        .find(u => u.id === id)
     }
   },
   Mutation: {
