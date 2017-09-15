@@ -34,7 +34,7 @@ describe('Tests that already pass', () => {
         id
       }
     }`
-    
+
     const result2 = await graphql(Schema, allUsersQuery, null, null)
     expect(result2.data.users.length).toEqual(9)
   })
@@ -62,6 +62,24 @@ describe('Tests for applicant to make pass', () => {
     }
     const { data, errors, } = await graphql(Schema, query, null, null)
     expect(data.user).toEqual(expected)
+  });
+
+  test('Part 1 (bonus): query vehicle by id', async () => {
+    const query = `
+    {
+      vehicle(id: 7) {
+        id
+        make
+        year
+      }
+    }`
+    const expected = {
+      id: 7,
+      make: 'Toyota',
+      year: 2008
+    }
+    const { data, errors, } = await graphql(Schema, query, null, null)
+    expect(data.vehicle).toEqual(expected)
   });
 
   test('Part 2: user displayName', async () => {
@@ -210,7 +228,7 @@ describe('Tests for applicant to make pass', () => {
          year
          make
          model
-       } 
+       }
       }`
       const result2 = await graphql(Schema, vehiclesQuery, null, null)
       expect(result2.data.vehicles[4]).toEqual(expected)

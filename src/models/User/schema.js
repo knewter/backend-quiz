@@ -4,6 +4,7 @@ type User {
   id: Int!
   firstName: String
   lastName: String
+  displayName: String
   email: String
   vehicles: [Vehicle]
 }

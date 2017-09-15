@@ -11,6 +11,11 @@ type Query {
   vehicles: [Vehicle]
 }
 
+type Query {
+  vehicle(id: Int!): Vehicle
+}
+
+
 type Mutation {
 }
 
