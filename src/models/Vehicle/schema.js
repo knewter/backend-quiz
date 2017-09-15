@@ -17,6 +17,16 @@ type Query {
 
 
 type Mutation {
+  createVehicle(input: CreateVehicleInput!): CreateVehiclePayload
 }
 
+input CreateVehicleInput {
+  year: Int!
+  make: String!
+  model: String!
+}
+
+type CreateVehiclePayload {
+  vehicle: Vehicle
+}
 `
