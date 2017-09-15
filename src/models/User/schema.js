@@ -12,6 +12,10 @@ type Query {
   users: [User]
 }
 
+type Query {
+  user(id: Int!): User
+}
+
 type Mutation {
   deleteUser(input: DeleteUserInput!): DeleteUserPayload
 }
